@@ -263,44 +263,9 @@ Through this project, I learned:
 
 B.Tech CSE Student
 Lovely Professional University
-DevOps | Cloud | Full Stack Development
+DevOps | Cloud |
 
 GitHub: [https://github.com/Satyaverma25](https://github.com/Satyaverma25)
-
----
-
-# ⭐ GitHub Push Commands
-
-## Initialize Git
-
-```bash
-git init
-```
-
-## Add Remote Repository
-
-```bash
-git remote add origin https://github.com/Satyaverma25/<YOUR_REPOSITORY_NAME>.git
-```
-
-## Add Files
-
-```bash
-git add .
-```
-
-## Commit Changes
-
-```bash
-git commit -m "Initial commit - Sensor Observability Dashboard"
-```
-
-## Push to GitHub
-
-```bash
-git branch -M main
-git push -u origin main
-```
 
 ---
 
