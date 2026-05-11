@@ -1,101 +1,309 @@
-# DevOps Edge Observability Project
+# 🚀 Sensor Monitoring & Observability Dashboard
 
-## Overview
-This project showcases my work on optimizing a Python-based sensor service and building a lightweight observability stack designed for edge and resource-constrained environments.
+A complete DevOps + Observability project built using **Python, Docker, Kubernetes, Prometheus, and Grafana**.
 
-The primary objective was to reduce CPU and memory usage, stabilize metrics collection, and ensure reliable observability using industry-standard tools while staying within a strict memory limit.
+This project monitors a sensor service in real-time and visualizes system metrics such as:
 
----
+* CPU Usage
+* Memory Usage
+* Latency
+* Request Count
+* Service Health Status
 
-## Problem Statement
-The original Python sensor service suffered from multiple performance and observability issues:
-
-- The `/metrics` endpoint performed heavy computations on every scrape
-- High CPU utilization under load
-- Excessive memory consumption
-- Prometheus scrape delays and timeouts
-- Intermittent Grafana dashboard failures
-
-These issues made the service unsuitable for edge deployments where system resources are limited.
+The application is containerized using Docker and deployed on Kubernetes with full observability using Prometheus and Grafana.
 
 ---
 
-## Solution Approach
-I followed a structured optimization and observability approach:
+# 📌 Project Overview
 
-- Identified CPU and memory bottlenecks in the Python service
-- Refactored the `/metrics` endpoint to keep it lightweight
-- Exposed only essential Prometheus metrics
-- Used proper Prometheus exposition standards
-- Removed unnecessary computations from the metrics path
-- Containerized all components using Docker
-- Orchestrated the stack using Docker Compose
-- Built minimal Grafana dashboards for clear visibility
+This project demonstrates how modern DevOps monitoring systems work in real-world environments.
 
-This resulted in a stable and resource-efficient observability setup.
+The sensor service exposes custom metrics which are scraped by Prometheus and visualized using Grafana dashboards.
+
+The frontend dashboard provides a clean UI to display live monitoring information.
 
 ---
 
-## Observability Stack
-The following tools were used:
+# 🛠️ Tech Stack
 
-- **Python** – Optimized sensor service
-- **Prometheus** – Metrics scraping and storage
-- **Grafana** – Metrics visualization
-- **Docker & Docker Compose** – Containerization and orchestration
+## Backend
 
-The stack was intentionally kept simple to support edge use cases.
+* Python
+* Flask
+* Prometheus Client Library
 
----
+## DevOps & Monitoring
 
-## Custom Metrics
-The service exposes the following custom metrics:
+* Docker
+* Kubernetes
+* Minikube
+* Prometheus
+* Grafana
+* kubectl
 
-- **sensor_requests_total**  
-  Tracks the total number of requests handled by the service.
+## Frontend
 
-- **sensor_processing_latency_seconds**  
-  Measures request processing latency.
-
-- **sensor_cpu_spike**  
-  Simulates CPU spike behavior to observe system stress.
-
-These metrics help analyze system performance and resource behavior.
+* HTML
+* CSS
+* JavaScript
 
 ---
 
-## Performance Results
-Memory usage was monitored using `docker stats`.
-
-| Component        | Approx Memory Usage |
-|------------------|---------------------|
-| Sensor Service   | ~27 MB              |
-| Prometheus       | ~28 MB              |
-| Grafana          | ~120 MB             |
-| **Total**        | **~175 MB**         |
-
-The complete observability stack runs well within the **300 MB memory constraint**, making it suitable for edge environments.
-
----
-
-## Screenshots
-The `screenshots/` directory contains:
-
-- Grafana dashboard
-- Prometheus targets showing service status (UP)
-- Docker stats displaying memory usage
-
----
-
-## Video Walkthrough
-A complete project walkthrough is available here:  
-https://drive.google.com/file/d/1ktwZh1qrbiHeYdMdZniLZlVYo2REiPwb/view?usp=drive_link
-
----
-
-## How to Run the Project
-
-Make sure Docker and Docker Compose are installed.
+# 📂 Project Structure
 
 ```bash
-docker compose up --build
+.
+├── Dockerfile
+├── docker-compose.yml
+├── deployment.yaml
+├── service.yaml
+├── prometheus.yml
+├── sensor_service.py
+├── README.md
+├── screenshots/
+└── performance-budget-report.md
+```
+
+---
+
+# ⚙️ Features
+
+✅ Real-time CPU monitoring
+✅ Real-time memory monitoring
+✅ Request latency tracking
+✅ Prometheus metrics scraping
+✅ Grafana dashboards
+✅ Kubernetes deployment
+✅ Docker containerization
+✅ NodePort service exposure
+✅ Live observability system
+
+---
+
+# 📊 Monitoring Metrics
+
+The following custom Prometheus metrics are used:
+
+| Metric                  | Description                 |
+| ----------------------- | --------------------------- |
+| `cpu_usage_percent`     | CPU usage of sensor service |
+| `memory_usage_percent`  | Memory consumption          |
+| `sensor_requests_total` | Total API requests          |
+| `up`                    | Service health status       |
+
+---
+
+# 🐳 Docker Setup
+
+## Build Docker Image
+
+```bash
+docker build -t sensor-app .
+```
+
+## Run Container
+
+```bash
+docker run -p 8000:8000 sensor-app
+```
+
+---
+
+# ☸️ Kubernetes Deployment
+
+## Apply Deployment
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+## Apply Service
+
+```bash
+kubectl apply -f service.yaml
+```
+
+## Verify Pods
+
+```bash
+kubectl get pods
+```
+
+## Verify Services
+
+```bash
+kubectl get svc
+```
+
+---
+
+# 📈 Prometheus Setup
+
+## Port Forward Prometheus
+
+```bash
+kubectl port-forward svc/monitoring-kube-prometheus-prometheus 9090:9090
+```
+
+## Access Prometheus
+
+```bash
+http://localhost:9090
+```
+
+### Sample Queries
+
+```promql
+up
+```
+
+```promql
+cpu_usage_percent
+```
+
+```promql
+memory_usage_percent
+```
+
+```promql
+sensor_requests_total
+```
+
+---
+
+# 📉 Grafana Setup
+
+## Port Forward Grafana
+
+```bash
+kubectl port-forward svc/monitoring-grafana 3000:80
+```
+
+## Access Grafana
+
+```bash
+http://localhost:3000
+```
+
+---
+
+# 🖥️ Dashboard Preview
+
+## Sensor Monitoring Dashboard
+
+* CPU Usage
+* Memory Usage
+* Latency
+* Service Status
+
+## Grafana Observability Dashboard
+
+* Request monitoring
+* CPU graphs
+* Memory graphs
+* Real-time metrics visualization
+
+---
+
+# 📷 Screenshots
+
+## Application Dashboard
+
+<img width="100%" src="screenshots/Screenshot 2025-12-24 195124.png">
+
+## Prometheus Metrics
+
+<img width="100%" src="screenshots/Screenshot 2025-12-24 195159.png">
+
+## Grafana Dashboard
+
+<img width="100%" src="screenshots/Screenshot 2025-12-24 195249.png">
+
+---
+
+# 🔥 How It Works
+
+1. Sensor service generates metrics.
+2. Prometheus scrapes metrics periodically.
+3. Grafana reads data from Prometheus.
+4. Dashboards visualize system performance.
+5. Kubernetes manages deployment and scaling.
+
+---
+
+# 🧠 Learning Outcomes
+
+Through this project, I learned:
+
+* Docker containerization
+* Kubernetes deployments and services
+* Prometheus monitoring
+* Grafana dashboard creation
+* Observability concepts
+* Infrastructure monitoring
+* DevOps workflow
+* Metrics collection and visualization
+
+---
+
+# 🚀 Future Improvements
+
+* Add alerting system using Alertmanager
+* Add CI/CD pipeline using Jenkins/GitHub Actions
+* Add authentication and security
+* Deploy on cloud platforms (AWS/GCP/Azure)
+* Add logging using ELK Stack
+* Add auto-scaling in Kubernetes
+
+---
+
+# 👨‍💻 Author
+
+## Satya Prakash
+
+B.Tech CSE Student
+Lovely Professional University
+DevOps | Cloud | Full Stack Development
+
+GitHub: [https://github.com/Satyaverma25](https://github.com/Satyaverma25)
+
+---
+
+# ⭐ GitHub Push Commands
+
+## Initialize Git
+
+```bash
+git init
+```
+
+## Add Remote Repository
+
+```bash
+git remote add origin https://github.com/Satyaverma25/<YOUR_REPOSITORY_NAME>.git
+```
+
+## Add Files
+
+```bash
+git add .
+```
+
+## Commit Changes
+
+```bash
+git commit -m "Initial commit - Sensor Observability Dashboard"
+```
+
+## Push to GitHub
+
+```bash
+git branch -M main
+git push -u origin main
+```
+
+---
+
+# 🌟 Final Result
+
+This project successfully demonstrates a complete DevOps observability pipeline using Kubernetes, Prometheus, and Grafana with live monitoring dashboards.
