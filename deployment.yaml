@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sensor-app
+  template:
+    metadata:
+      labels:
+        app: sensor-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+    spec:
+      containers:
+      - name: sensor-app
+        image: sensor-app:v3
+        ports:
+        - containerPort: 8000
